@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="c_sharp_rush00.Views.MainView">
+  <StackPanel>
+      <ListBox Name="HabbitsListView" Items="{Binding Habbits}">
+        <ListBox.ItemTemplate>
+          <DataTemplate>
+            <Border Background="Red" CornerRadius="4" Padding="4" >
+                <StackPanel> 
+                  <TextBlock Text="{Binding Title}" />
+                  <TextBlock Text="{Binding Motivation}" />
+                  <CheckBox IsChecked="{Binding IsActive}" IsEnabled="false" Content="Активно" Margin="4"/>
+                  <CheckBox IsChecked="{Binding IsFinished}" IsEnabled="false" Content="Готово" Margin="4"/>
+                  <Button Content="Выбрать" Margin="4"
+                    Command="{Binding $parent[Window].DataContext.Content.SelectHabbitCommand}" CommandParameter="{Binding}"/>
+                  <Button Content="Завершить" Margin="4"
+                    Command="{Binding $parent[Window].DataContext.Content.FinishHabbitCommand}" CommandParameter="{Binding}"/>
+                </StackPanel>
+            </Border>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+    <Button Command="{Binding $parent[Window].DataContext.AddItem}">Создать новый</Button>
+  </StackPanel>
+
+</UserControl>
